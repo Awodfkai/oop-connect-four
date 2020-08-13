@@ -1,15 +1,28 @@
+import {Game} from "./game.js";
+
 document.addEventListener("DOMContentLoaded", () =>
 {
     //globals
     //to keep track of player turn
     let playerTurn = "black";
-    let boardState = [[],[],[],[],[],[],[]]
+    let boardState = [[],[],[],[],[],[],[]];
     let game = undefined;
+
 
     
 
 
     //functions
+    function updateUI(){
+        if(!game){
+            document.getElementById("board-holder").classList.add("is-invisible");
+        } else{
+            document.getElementById("board-holder").classList.remove("is-invisible");
+            document.getElementById("game-name").innerHTML = game.getName();
+        }
+    }
+
+
     function changePlayerTurn(){
         let board = document.getElementById("click-targets")
         board.classList.remove(playerTurn);
