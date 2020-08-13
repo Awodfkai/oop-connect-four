@@ -48,8 +48,13 @@ document.addEventListener("DOMContentLoaded", () =>
         updateUI();
         let ele = document.getElementById("click-targets");
         ele.addEventListener("click", e =>{
-            game.move(e)
-            game.changePlayerTurn();
+            const t = e.target;
+            //get last digit for column number
+            const columnNumber = Number(t.id[t.id.length - 1])
+            game.move(columnNumber);
+            game.checkColumnForFull(columnNumber);
+            game.changePlayerTurn()
+            updateUI();
         })
     }
 

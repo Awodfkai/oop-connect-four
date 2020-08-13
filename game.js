@@ -4,11 +4,16 @@ class Game{
         this.player1Name = player1Name;
         this.player2Name = player2Name;
         this.playerTurn = "black";
+        this.winnerNumber = 0;
         
     }
 
     getName(){
-        return `${this.player1Name} vs ${this.player2Name}`
+        if(this.winnerNumber === 0){
+            return `${this.player1Name} vs ${this.player2Name}`
+        } else if(this.winnerNumber === 3){
+            return `${this.player1Name} ties with ${this.player2Name}`
+        }
     }
 
     changePlayerTurn() {
@@ -21,10 +26,7 @@ class Game{
         }
         board.classList.add(this.playerTurn);
     }
-    move(e) {
-        const t = e.target;
-        //get last digit for column number
-        const columnNumber = Number(t.id[t.id.length - 1])
+    move(columnNumber) {
         this.boardState[columnNumber].push(this.playerTurn);
         const rowNumber = 6 - this.boardState[columnNumber].length
         const newToken = document.createElement("div");
@@ -32,10 +34,14 @@ class Game{
         const square = document.getElementById(`square-${rowNumber}-${columnNumber}`);
         square.appendChild(newToken)
     }
-    playerClick(e){
-        console.log(this);
-        this.move(e)
-        this.changePlayerTurn();
+
+    checkColumnForFull(columnNumber){
+        if(this.boardState[columnNumber].length >= 6){
+            document.getElementById(`column-${columnNumber}`).classList.add("full")
+        }
+        if(this.boardState.every(el => {return el.length >= 6})){
+            this.winnerNumber = 3;
+        }
     }
 }
 
