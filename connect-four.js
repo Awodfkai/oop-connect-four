@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () =>
             game.checkColumnForFull(columnNumber);
             game.checkColumnWin(columnNumber);
             game.checkRowWin(columnNumber);
+            game.checkDiagonalWin(columnNumber);
             game.checkTie();
             updateUI();
             game.changePlayerTurn()

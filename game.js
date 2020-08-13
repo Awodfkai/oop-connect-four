@@ -78,7 +78,7 @@ class Game{
             break
         }
     }
-    console.log(checkingArr)
+    //console.log(checkingArr)
     for(let i = 0; i < checkingArr.length - 3; i++){
         let newArr = checkingArr.slice(i, 4);
         if(newArr.every(el => el === this.playerTurn)){
@@ -87,6 +87,33 @@ class Game{
             } else{
                 this.winnerNumber = 1;
             }
+            }
+        }
+    }
+
+    checkDiagonalWin(columnNumber){
+        let rowNumber = this.boardState[columnNumber].length - 1;
+        const checkingArr = [];
+        for (let i = columnNumber - 3; i < columnNumber + 4; i++) {
+            while (i < 0) {
+                i++
+            }
+            checkingArr.push(this.boardState[i][rowNumber+i-columnNumber]);
+            if (i > 5) {
+                break
+            }
+        }
+        console.log(rowNumber)
+        console.log(columnNumber)
+        console.log(checkingArr)
+        for (let i = 0; i < checkingArr.length - 3; i++) {
+            let newArr = checkingArr.slice(i, 4);
+            if (newArr.every(el => el === this.playerTurn)) {
+                if (this.playerTurn === "black") {
+                    this.winnerNumber = 2;
+                } else {
+                    this.winnerNumber = 1;
+                }
             }
         }
     }
