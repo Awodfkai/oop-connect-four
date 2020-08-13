@@ -59,8 +59,24 @@ class Game{
                 } else{
                     this.winnerNumber = 2;
                 }
+                for(let i=0; i<7; i++){
+                    document.getElementById(`column-${i}`).classList.add("full")
+                }
             }
         }
+    }
+
+    checkRowWin(columnNumber){
+        let rowNumber = this.boardState[columnNumber].length;
+        let win = 0;
+        for (let i = columnNumber - 3; i < columnNumber+1; i++){
+            for(let j=0; j<4; j++){
+                if (this.playerTurn === this.boardState[i+j][rowNumber]){
+                    
+                }
+            }
+        }
+        
     }
 }
 
