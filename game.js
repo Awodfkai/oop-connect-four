@@ -13,6 +13,10 @@ class Game{
             return `${this.player1Name} vs ${this.player2Name}`
         } else if(this.winnerNumber === 3){
             return `${this.player1Name} ties with ${this.player2Name}`
+        } else if(this.winnerNumber === 1){
+            return `${this.player1Name} Wins!!!`
+        } else if(this.winnerNumber === 2){
+            return `${this.player2Name} Wins!!!`
         }
     }
 
@@ -39,8 +43,23 @@ class Game{
         if(this.boardState[columnNumber].length >= 6){
             document.getElementById(`column-${columnNumber}`).classList.add("full")
         }
+    }
+    checkTie(){
         if(this.boardState.every(el => {return el.length >= 6})){
             this.winnerNumber = 3;
+        }
+    }
+
+    checkColumnWin(columnNumber){
+        if(this.boardState[columnNumber].length >= 4){
+            const chunk = this.boardState[columnNumber].slice((this.boardState[columnNumber].length - 4));
+            if(chunk.every(el => el === this.playerTurn)){
+                if(this.playerTurn === "red"){
+                    this.winnerNumber = 1;
+                } else{
+                    this.winnerNumber = 2;
+                }
+            }
         }
     }
 }

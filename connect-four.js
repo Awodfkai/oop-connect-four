@@ -53,8 +53,10 @@ document.addEventListener("DOMContentLoaded", () =>
             const columnNumber = Number(t.id[t.id.length - 1])
             game.move(columnNumber);
             game.checkColumnForFull(columnNumber);
-            game.changePlayerTurn()
+            game.checkColumnWin(columnNumber);
+            game.checkTie();
             updateUI();
+            game.changePlayerTurn()
         })
     }
 
