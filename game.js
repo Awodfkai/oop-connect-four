@@ -72,7 +72,7 @@ class Game{
         for (let i = columnNumber - 3; i < columnNumber+1; i++){
             for(let j=0; j<4; j++){
                 if (this.playerTurn === this.boardState[i+j][rowNumber]){
-                    
+                    console.log("row win")
                 }
             }
         }
