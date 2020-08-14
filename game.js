@@ -67,26 +67,26 @@ class Game{
     }
 
     checkRowWin(columnNumber){
-    let rowNumber = this.boardState[columnNumber].length -1;
-    const checkingArr = [];
-    for(let i=columnNumber - 3; i < columnNumber + 4; i++){
-        while(i < 0){
-            i++
-        }
-        checkingArr.push(this.boardState[i][rowNumber]);
-        if(i > 5){
-            break
-        }
-    }
-    //console.log(checkingArr)
-    for(let i = 0; i < checkingArr.length - 3; i++){
-        let newArr = checkingArr.slice(i, 4);
-        if(newArr.every(el => el === this.playerTurn)){
-            if(this.playerTurn === "black"){
-                this.winnerNumber = 2;
-            } else{
-                this.winnerNumber = 1;
+        let rowNumber = this.boardState[columnNumber].length -1;
+        const checkingArr = [];
+        for(let i=columnNumber - 3; i < columnNumber + 4; i++){
+            while(i < 0){
+                i++
             }
+            checkingArr.push(this.boardState[i][rowNumber]);
+            if(i > 5){
+                break
+            }
+        }
+        //console.log(checkingArr)
+        for(let i = 0; i < checkingArr.length - 3; i++){
+            let newArr = checkingArr.slice(i, 4);
+            if(newArr.every(el => el === this.playerTurn)){
+                if(this.playerTurn === "black"){
+                    this.winnerNumber = 2;
+                } else{
+                    this.winnerNumber = 1;
+                }
             }
         }
     }
@@ -117,6 +117,9 @@ class Game{
             }
         }
     }
+
+
+
 }
 
 export {Game}
